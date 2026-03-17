@@ -2215,7 +2215,7 @@
       </div>
 <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
   <div class="contact-form-box">
-    <form id="contactForm" action="https://formsubmit.co/rrk17102005@gmail.com" method="POST" novalidate>
+    <form id="contactForm" action="https://formsubmit.co/rrk17102005@gmail.com"   method="POST" novalidate>
 
       <!-- Formsubmit Config -->
       <input type="hidden" name="_subject" value="New message from Portfolio!">
@@ -2421,32 +2421,39 @@ document.querySelectorAll('.tl-item').forEach(el => tlObs.observe(el));
 // ============================================================
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Validate fields
   let ok = true;
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const msg = document.getElementById('message').value.trim();
+  const name    = document.getElementById('name').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const msg     = document.getElementById('message').value.trim();
 
-  document.getElementById('nameErr').textContent = '';
+  document.getElementById('nameErr').textContent  = '';
   document.getElementById('emailErr').textContent = '';
-  document.getElementById('msgErr').textContent = '';
+  document.getElementById('msgErr').textContent   = '';
 
-  if (name.length < 2) { document.getElementById('nameErr').textContent = '⚠ Please enter your full name'; ok = false; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('emailErr').textContent = '⚠ Please enter a valid email'; ok = false; }
-  if (msg.length < 10) { document.getElementById('msgErr').textContent = '⚠ Message must be at least 10 characters'; ok = false; }
+  if (name.length < 2) {
+    document.getElementById('nameErr').textContent = '⚠ Please enter your full name';
+    ok = false;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('emailErr').textContent = '⚠ Please enter a valid email';
+    ok = false;
+  }
+  if (msg.length < 10) {
+    document.getElementById('msgErr').textContent = '⚠ Message must be at least 10 characters';
+    ok = false;
+  }
 
   if (ok) {
+    // Show sending state
     const btn = this.querySelector('button[type="submit"]');
     btn.disabled = true;
     document.getElementById('submitTxt').textContent = 'Sending...';
-    document.getElementById('submitIcon').className = 'fas fa-spinner fa-spin';
-    setTimeout(() => {
-      this.reset();
-      btn.disabled = false;
-      document.getElementById('submitTxt').textContent = 'Send Message';
-      document.getElementById('submitIcon').className = 'fas fa-paper-plane';
-      document.getElementById('successMsg').classList.add('show');
-      setTimeout(() => document.getElementById('successMsg').classList.remove('show'), 5000);
-    }, 1800);
+    document.getElementById('submitIcon').className  = 'fas fa-spinner fa-spin';
+
+    // Actually submit the form to Formsubmit
+    this.submit();
   }
 });
 
