@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <!-- AOS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
   <style>
     /* =============================================
@@ -951,7 +951,7 @@
     }
 
   
-    ============================================= */
+    /*============================================= */
     @media (max-width: 991px) {
       .timeline::before { left: 26px; transform: none; }
       .tl-item { width: 100%; padding-left: 65px; text-align: left !important; margin: 0 0 2rem !important; transform: translateX(-20px) !important; }
@@ -1761,7 +1761,33 @@
       box-shadow: 0 0 8px rgba(200,169,81,0.5);
     }
 
+
+    /* =============================================
+       PROFILE PHOTO STYLES
+    ============================================= */
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 50%;
+      display: block;
+    }
+    #heroAvatarBox {
+      padding: 0 !important;
+      overflow: hidden;
+    }
+    .about-img-box {
+      position: relative;
+    }
+    .about-img-box img {
+      position: relative;
+      z-index: 1;
+    }
   </style>
+  <!-- Bootstrap JS + AOS JS (loaded in head so they are ready before body scripts) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </head>
 <body>
 
@@ -1828,7 +1854,7 @@
         </div>
         <h1 class="hero-name">
           <span class="hero-sub">Hi, I'm</span>
-          Ramesh
+          Ramesh Kanna
         </h1>
         <p class="hero-role-line">
           <span style='font-family:var(--elegant);font-style:italic;color:var(--muted);font-size:0.9em;'>I am a</span> <span id="typed"></span><span class="cursor-blink">|</span>
@@ -1839,12 +1865,12 @@
         </p>
         <div class="d-flex gap-3 flex-wrap">
           <a href="#projects" class="btn-accent">View Projects <i class="fas fa-arrow-right"></i></a>
-          <a href="#" class="btn-outline-accent" id="heroDownload"><i class="fas fa-download"></i> Download CV</a>
+          <a href="rameshkanna.pdf" download="rameshkanna.pdf" class="btn-outline-accent" id="heroDownload"><i class="fas fa-download"></i> Download CV</a>
         </div>
         <div class="hero-socials">
-          <a href="#" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="/cdn-cgi/l/email-protection#5e2c3f333b2d361e3b333f3732703d3133" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/Rameshkannar" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ramesh-kanna-4b2281229?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:rameshkanna@email.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
       <!-- Image -->
@@ -1853,7 +1879,14 @@
           <div class="orbit-ring" style="width:100%;height:100%;position:absolute;"><div class="orbit-dot" style="position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 10px rgba(200,169,81,0.8);"></div></div>
           <div class="orbit-ring" style="width:76%;height:76%;position:absolute;"><div class="orbit-dot" style="position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:var(--jewel);border-radius:50%;box-shadow:0 0 8px rgba(139,92,246,0.8);"></div></div>
           <div class="orbit-ring" style="width:52%;height:52%;position:absolute;"></div>
-          <div class="hero-avatar"><i class="fas fa-user"></i></div>
+          <div class="hero-avatar" id="heroAvatarBox">
+            <img src="profile.jpeg" alt="Ramesh Kanna" 
+                 onerror="this.style.display='none'; document.getElementById('heroAvatarIcon').style.display='flex';"
+            />
+            <div id="heroAvatarIcon" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:5.5rem;color:var(--gold);">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
           <div class="float-chip chip-1"><i class="fas fa-code"></i> Java Dev</div>
           <div class="float-chip chip-2"><i class="fas fa-microchip"></i> IoT</div>
           <div class="float-chip chip-3"><i class="fas fa-server"></i> Backend</div>
@@ -1877,8 +1910,12 @@
     </div>
     <div class="row align-items-center gy-5">
       <div class="col-lg-5" data-aos="fade-right">
-        <div class="about-img-box mb-3" style="background:linear-gradient(135deg,#13102a,#1e1840);border:1px solid rgba(200,169,81,0.2);">
-          <div style="text-align:center">
+        <div class="about-img-box mb-3" style="background:linear-gradient(135deg,#13102a,#1e1840);border:1px solid rgba(200,169,81,0.2);padding:0;overflow:hidden;">
+          <img src="profile.jpg" alt="Ramesh" 
+               style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"
+               onerror="this.style.display='none'; document.getElementById('aboutImgFallback').style.display='flex';"
+          />
+          <div id="aboutImgFallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:absolute;inset:0;">
             <div style="font-size:5rem;color:var(--gold);filter:drop-shadow(0 0 20px rgba(200,169,81,0.4));">♛</div>
             <div style="font-family:var(--royal-serif);font-size:0.65rem;letter-spacing:4px;color:rgba(200,169,81,0.4);margin-top:8px;">RAMESH</div>
           </div>
@@ -2124,7 +2161,7 @@
             <div class="mock-sec"><div class="mock-ln w100"></div><div class="mock-ln w100"></div><div class="mock-ln w55"></div></div>
           </div>
         </div>
-        <a href="#" class="btn-accent w-100 justify-content-center" id="cvBtn">
+        <a href="rameshkanna.pdf" download="rameshkanna.pdf" class="btn-accent w-100 justify-content-center" id="cvBtn">
           <i class="fas fa-download"></i> Download Resume
         </a>
       </div>
@@ -2165,52 +2202,58 @@
         <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;">Whether it's a project collaboration, job opportunity, or just a chat about tech — I'm always open to connecting.</p>
         <div class="contact-info-card">
           <div class="ci-icon"><i class="fas fa-envelope"></i></div>
-          <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="beccdfd3dbcdd6fedbd3dfd7d290ddd1d3">[email&#160;protected]</a></div></div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val">rameshkanna@email.com</div></div>
         </div>
         <div class="contact-info-card">
           <div class="ci-icon"><i class="fab fa-github"></i></div>
-          <div><div class="ci-lbl">GitHub</div><div class="ci-val">github.com/ramesh</div></div>
+          <div><div class="ci-lbl">GitHub</div><div class="ci-val">github.com/Rameshkannar</div></div>
         </div>
         <div class="contact-info-card">
           <div class="ci-icon"><i class="fab fa-linkedin-in"></i></div>
-          <div><div class="ci-lbl">LinkedIn</div><div class="ci-val">linkedin.com/in/ramesh</div></div>
+          <div><div class="ci-lbl">LinkedIn</div><div class="ci-val">linkedin.com/in/ramesh-kanna-4b228</div></div>
         </div>
       </div>
-      <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
-        <div class="contact-form-box">
-          <form id="contactForm" novalidate>
-            <div class="row g-3 mb-3">
-              <div class="col-sm-6">
-                <label class="form-label-custom">Your Name</label>
-                <input type="text" id="name" class="form-ctrl" placeholder="Ramesh Kumar"/>
-                <span class="err-msg" id="nameErr"></span>
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label-custom">Email Address</label>
-                <input type="email" id="email" class="form-ctrl" placeholder="you@example.com"/>
-                <span class="err-msg" id="emailErr"></span>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label-custom">Subject</label>
-              <input type="text" id="subject" class="form-ctrl" placeholder="Project collaboration..."/>
-            </div>
-            <div class="mb-3">
-              <label class="form-label-custom">Message</label>
-              <textarea id="message" class="form-ctrl" placeholder="Tell me about your idea..."></textarea>
-              <span class="err-msg" id="msgErr"></span>
-            </div>
-            <button type="submit" class="btn-accent w-100 justify-content-center">
-              <span id="submitTxt">Send Message</span>
-              <i class="fas fa-paper-plane" id="submitIcon"></i>
-            </button>
-            <div class="success-msg" id="successMsg">
-              <i class="fas fa-check-circle"></i> Message sent! I'll get back to you soon.
-            </div>
-          </form>
+<div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
+  <div class="contact-form-box">
+    <form id="contactForm" action="https://formsubmit.co/rameshkannar2005@gmail.com" method="POST" novalidate>
+
+      <!-- Formsubmit Config -->
+      <input type="hidden" name="_subject" value="New message from Portfolio!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://yourportfolio.com">
+
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6">
+          <label class="form-label-custom">Your Name</label>
+          <input type="text" id="name" name="name" class="form-ctrl" placeholder="Ramesh " required/>
+          <span class="err-msg" id="nameErr"></span>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label-custom">Email Address</label>
+          <input type="email" id="email" name="email" class="form-ctrl" placeholder="you@example.com" required/>
+          <span class="err-msg" id="emailErr"></span>
         </div>
       </div>
-    </div>
+      <div class="mb-3">
+        <label class="form-label-custom">Subject</label>
+        <input type="text" id="subject" name="subject" class="form-ctrl" placeholder="Project collaboration..."/>
+      </div>
+      <div class="mb-3">
+        <label class="form-label-custom">Message</label>
+        <textarea id="message" name="message" class="form-ctrl" placeholder="Tell me about your idea..." required></textarea>
+        <span class="err-msg" id="msgErr"></span>
+      </div>
+      <button type="submit" class="btn-accent w-100 justify-content-center">
+        <span id="submitTxt">Send Message</span>
+        <i class="fas fa-paper-plane" id="submitIcon"></i>
+      </button>
+      <div class="success-msg" id="successMsg">
+        <i class="fas fa-check-circle"></i> Message sent! I'll get back to you soon.
+      </div>
+    </form>
+  </div>
+</div>    </div>
   </div>
 </section>
 
@@ -2242,9 +2285,9 @@
       <div class="col-sm-4 col-lg-4">
         <div class="footer-heading">Connect</div>
         <div>
-          <a href="#" class="footer-social-btn"><i class="fab fa-github"></i></a>
-          <a href="#" class="footer-social-btn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="/cdn-cgi/l/email-protection#e89a89858d9b80a88d85898184c68b8785" class="footer-social-btn"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/Rameshkannar" class="footer-social-btn"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ramesh-kanna-4b2281229?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="footer-social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:rameshkannar2005@email.com" class="footer-social-btn"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -2261,8 +2304,7 @@
 <button id="backTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <!-- Scripts -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
 <script>
 // ============================================================
 // LOADER
@@ -2271,7 +2313,6 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loader').classList.add('hide');
     AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 50 });
-    // Animate active panel skill bars
     animateBars(document.getElementById('panel-frontend'));
   }, 1900);
 });
@@ -2419,16 +2460,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 // ============================================================
 // RESUME DOWNLOAD (MOCK)
 // ============================================================
-['heroDownload', 'cvBtn'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.addEventListener('click', (e) => {
-    e.preventDefault();
-    const orig = el.innerHTML;
-    el.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
-    setTimeout(() => el.innerHTML = orig, 2500);
-  });
-});
+
 
 // ============================================================
 // PROJECT CARD TILT
